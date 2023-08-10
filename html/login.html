@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/login.css">
+  <script src="javaScript\login.js"></script>
+</head>
+<header class="header">
+    <a href="index.html" class="logo">Workout Planner</a>
+    <nav class="nav-items">
+      <a href="index.html">Planner</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="intro">
+      <h1>Login</h1>
+      <p>Login to save your workouts to your account</p>
+    </div>
+    <div id="login-prompt">
+        
+        <div id="login-error-msg-holder">
+        <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+        </div>
+    
+        <form id="login-form">
+        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+        <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+        <input onclick="submitClick(); return false" type="submit" value="Login" id="login-form-submit">
+        </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="copy">&copy; 2023 Drunken Gears</div>
+    <div class="bottom-links">
+      <div class="links">
+        <span>More Info</span>
+        <a href="#">Planner</a>
+        <a href="#">Login</a>
+      </div>
+    </div>
+  </footer>
