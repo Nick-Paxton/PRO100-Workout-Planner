@@ -17,10 +17,10 @@ const get = (req, res) => {
 }
 
 
-const getByDate = (req, res) => {
-    const dateString = req.params.date
+const getByUserID = (req, res) => {
+    const userID = req.params.userID
     try {
-        dal.getByDate(db,collection,dateString, (jsonData) => {
+        dal.getByUserID(db,collection,userID, (jsonData) => {
             if (jsonData) {
                 res.json(jsonData)
             } else {
@@ -47,9 +47,8 @@ const patch = (req, res) => {
 const post = (req, res) => {
     try {
         body = {
-            ID: req.body['ID'],
-            date: new Date(req.body["date"]),
-            exercises: req.body['exercises']
+            userID: req.body['userID'],
+            '2023': req.body['2023']
         }
         dal.Post(db, collection, body, () => {
             res.sendStatus(200)
@@ -60,7 +59,7 @@ const post = (req, res) => {
 }
 
 
-const deleteJoke = (req, res) => {
+const deleteWorkout = (req, res) => {
     try {
         dal.Delete(db, collection, req.body, () => {
             res.sendStatus(200)
@@ -73,7 +72,7 @@ const deleteJoke = (req, res) => {
 router.get('/', get)
 router.patch('/', patch)
 router.post('/', post)
-router.delete('/', deleteJoke)
-router.get('/:date', getByDate)
+router.delete('/', deleteWorkout)
+router.get('/:userID', getByUserID)
 
 module.exports = router

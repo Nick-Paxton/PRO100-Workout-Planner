@@ -1,8 +1,8 @@
 const api = require("./data.js")
 
-const getWorkoutByDate = async (db, collection, dateString, callback) => {
+const getByUserID = async (db, collection, dateString, callback) => {
     let dateNumber = parseInt(dateString)
-    query = { "ID": dateNumber }
+    query = { "userID": dateNumber }
     api.get(db,collection,query,callback)
 }
 
@@ -13,7 +13,7 @@ const deleteDocument = api.Delete
 
 module.exports = {
     get: getDocument,
-    getByDate: getWorkoutByDate,
+    getByUserID: getByUserID,
     Update: updateDocument,
     Post: postDocument,
     Delete: deleteDocument
