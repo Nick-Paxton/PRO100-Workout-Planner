@@ -1,4 +1,4 @@
-//a bunch of dirty code that assembles calendar objects to be stored
+//a bunch of dirty code that assembles calendar objects to be stored  
 
 first = new Date()
 day = new Date()
