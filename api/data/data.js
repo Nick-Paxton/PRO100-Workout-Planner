@@ -28,9 +28,9 @@ const getDocument = async (db, collection, body, callback) => {
 
     executeQuery(async (client) => {
         const database = client.db(db)
-        const jokes = database.collection(collection)
-        let jokesdata = await jokes.findOne(body)
-        callback(jokesdata)
+        const collect = database.collection(collection)
+        let data = await collect.findOne(body)
+        callback(data)
     })
 }
 
@@ -45,7 +45,7 @@ const updateDocument = async (db, collection, body, callback) => {
 
     executeQuery(async (client) => {
         const database = client.db(db)
-        const jokes = database.collection(collection)
+        const collect = database.collection(collection)
         const options = body['options']
 
         const doc = {
@@ -53,7 +53,7 @@ const updateDocument = async (db, collection, body, callback) => {
         }
 
         const query = {id: body['id'] }
-        await jokes.updateOne(query, doc, options)
+        await collect.updateOne(query, doc, options)
         callback()
     })
 }
@@ -69,9 +69,9 @@ const postDocument = async (db, collection, body, callback) => {
     
     executeQuery(async (client) => {
         const database = client.db(db)
-        const jokes = database.collection(collection)
+        const collect = database.collection(collection)
         const doc = body
-        await jokes.insertOne(doc)
+        await collect.insertOne(doc)
         
         callback()
     })
@@ -89,10 +89,10 @@ const deleteDocument = async (db, collection, body, callback) => {
     
     executeQuery(async (client) => {
         const database = client.db(db)
-        const jokes = database.collection(collection)
+        const collect = database.collection(collection)
 
         const query = {id: body['id']}
-        await jokes.deleteOne(query)
+        await collect.deleteOne(query)
 
         callback()
     })

@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const dal = require('../data/data.js')
+const dal = require('../data/workoutdata.js')
 
 const db = 'workout_planner'
 const collection = 'default_workouts'
+
 
 const get = (req, res) => {
     try {
@@ -15,6 +16,23 @@ const get = (req, res) => {
     }
 }
 
+
+const getByDate = (req, res) => {
+    const dateString = req.params.date
+    try {
+        dal.getByDate(db,collection,dateString, (jsonData) => {
+            if (jsonData) {
+                res.json(jsonData)
+            } else {
+                res.sendStatus(404)
+            }
+        })
+    } catch (err) {
+        res.sendStatus(500)
+    }
+}
+
+
 const patch = (req, res) => {
     try {
         dal.Update(db, collection, req.body, () => {
@@ -25,9 +43,11 @@ const patch = (req, res) => {
     }
 }
 
+
 const post = (req, res) => {
     try {
         body = {
+            ID: req.body['ID'],
             date: new Date(req.body["date"]),
             exercises: req.body['exercises']
         }
@@ -38,6 +58,7 @@ const post = (req, res) => {
         res.sendStatus(500)
     }
 }
+
 
 const deleteJoke = (req, res) => {
     try {
@@ -53,5 +74,6 @@ router.get('/', get)
 router.patch('/', patch)
 router.post('/', post)
 router.delete('/', deleteJoke)
+router.get('/:date', getByDate)
 
 module.exports = router
