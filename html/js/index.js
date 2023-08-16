@@ -43,6 +43,14 @@ fetch("http://localhost:2718/workout/1234")
         }
     })
 
+function displayPopup() {
+    document.getElementById('myForm').style.display = "block"
+}
+
+function closePopup() {
+    document.getElementById('myForm').style.display = "none"
+}
+
 // const today = new Date()
 // const month = today.getMonth() + 1
 
