@@ -42,6 +42,13 @@ fetch("http://localhost:2718/workout/1234")
     })
 
 // old way of handling the data
+function displayPopup() {
+    document.getElementById('myForm').style.display = "block"
+}
+
+function closePopup() {
+    document.getElementById('myForm').style.display = "none"
+}
 
 // const today = new Date()
 // const month = today.getMonth() + 1
