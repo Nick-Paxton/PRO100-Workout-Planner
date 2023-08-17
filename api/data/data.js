@@ -72,7 +72,6 @@ const postDocument = async (db, collection, body, callback) => {
         const collect = database.collection(collection)
         const doc = body
         await collect.insertOne(doc)
-        
         callback()
     })
     

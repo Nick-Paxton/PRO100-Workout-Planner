@@ -10,44 +10,72 @@
   <script src="./js/index.js" defer></script>
 </head>
 <header class="header">
-    <a href="#" class="logo">Workout Planner</a>
-    <nav class="nav-items">
-      <a href="#">Planner</a>
-      <a href="#">Login</a>
-    </nav>
-  </header>
+  <a href="#" class="logo">Workout Planner</a>
+  <nav class="nav-items">
+    <a href="#">Planner</a>
+    <a href="#">Login</a>
+  </nav>
+</header>
 
   <main>
     <div class="intro">
       <h1>Welcome to our Workout Planner</h1>
       <p>Add workouts to the weekly calander below</p>
     </div>
+    <!-- Add Workout Form -->
+    <div class="form-popup" id="myForm">
+      <form class="form-container">
+        <h1>Add Workout</h1>
+
+        <label for="workoutName"><b>Workout Name</b></label>
+        <input type="text" placeholder="Workout Name" name="workoutName" required>
+
+        <label for="workoutDes"><b>Workout Description</b></label>
+        <textarea id="workoutDes" name="workoutDes" rows="4" cols="35" placeholder="Workout Description"></textarea>
+
+        <label for="reps"><b>Reps</b></label>
+        <input type="number" placeholder="Reps Count" name="reps" required>
+
+        <label for="sets"><b>Sets</b></label>
+        <input type="number" placeholder="Sets Count" name="sets" required>
+
+        <button type="submit" class="btn">Add Workout</button>
+        <button type="button" class="btn cancel" onclick="closePopup()">Close</button>
+      </form>
+</div>
     <div id="week">
         <div class="day">Sunday
+          <button class="addWorkout" onclick="displayPopup()">+</button>
           <ul id="list0">
           </ul>
         </div>
         <div class="day">Monday
+          <button class="addWorkout" onclick="displayPopup()">+</button>
           <ul id="list1">
           </ul>
         </div>
         <div class="day">Tuesday
+          <button class="addWorkout" onclick="displayPopup()">+</button>
           <ul id="list2">
           </ul>
         </div>
         <div class="day">Wednesday
+          <button class="addWorkout" onclick="displayPopup()">+</button>
           <ul id="list3">
           </ul>
         </div>
         <div class="day">Thursday
+          <button class="addWorkout" onclick="displayPopup()">+</button>
           <ul id="list4">
           </ul>
         </div>
         <div class="day">Friday
+          <button class="addWorkout" onclick="displayPopup()">+</button>
           <ul id="list5">
           </ul>
         </div>
         <div class="day">Saturday
+          <button class="addWorkout" onclick="displayPopup()">+</button>
           <ul id="list6">
           </ul>
         </div>
