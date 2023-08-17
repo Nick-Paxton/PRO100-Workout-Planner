@@ -26,7 +26,7 @@ fetch("http://localhost:2718/workout/1234")
 
                     var ul = document.querySelector("#list"+dayOfWeek)
 
-                    data[year+""][month+""][currentWeek+""][day+""]["workouts"].forEach(element => {
+                    data[year+""][month+""][currentWeek+""][day+""]["workouts"].forEach(element => { // ***** need to figure out how to handle empty objects *****
                         var exercise = element['name'] + ': Reps: ';
                         exercise = exercise + element['reps'] + ': Sets: ';
                         exercise = exercise + element['sets']
@@ -38,10 +38,10 @@ fetch("http://localhost:2718/workout/1234")
                     });
                 }
             })
-        } else {
-            // say that there is no workout for that day yet
         }
     })
+
+// old way of handling the data
 
 // const today = new Date()
 // const month = today.getMonth() + 1

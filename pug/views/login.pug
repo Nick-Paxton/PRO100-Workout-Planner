@@ -1,0 +1,21 @@
+extends layout
+
+block links
+    link(rel="stylesheet" href="./stylesheets/login.css")
+    
+block maincontent 
+    .intro
+        h1 Login 
+        p Login to save your workouts to your account
+    
+    #login-prompt 
+
+        #login-error-msg-holder
+            p#login-error-msg Invalid username
+                span#error-msg-second-line and/or password
+        
+        form#login-form
+            input(type="text" name="username" id="username-field" class="login-form-field" placeholder="Username")  
+            input(type="password" name="password" id="password-field" class="login-form-field" placeholder="Password")  
+            input(onclick="submitClick(); return false" type="submit" value="Login" id="login-form-submit")
+

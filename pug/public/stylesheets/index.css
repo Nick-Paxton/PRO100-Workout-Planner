@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+  body {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  #week {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .day {
+    padding: 4%;
+    border-style: solid;
+  }
