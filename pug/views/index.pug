@@ -1,25 +1,50 @@
 extends layout
 
 block links
+  link(rel='stylesheet', href='./stylesheets/style.css')
   link(rel='stylesheet', href='./stylesheets/index.css')
-  script(src=js defer)
+  script(src="./javascripts/index.js" defer)
 
 block maincontent
+  div#myForm.form-popup
+    form.form-container
+      h1#workout-head Add Workout
+      label(for='workoutName')
+        b Workout Name
+      input#workoutName(type='text' placeholder='Workout Name' name='workoutName' required='')
+      label(for='workoutDes')
+        b Workout Description
+      textarea#workoutDes(name='workoutDes' rows='4' cols='35' placeholder='Workout Description')
+      label(for='reps')
+        b Reps
+      input#reps(type='number' placeholder='Reps Count' name='reps' required='')
+      label(for='sets')
+        b Sets
+      input#sets(type='number' placeholder='Sets Count' name='sets' required='')
+      button#addButton.btn(type='button') Add Workout
+      button.btn.cancel(type='button' onclick='closePopup()') Close
   div.intro 
     h1 Welcome to our Workout Planner 
     p Add workouts to the weekly calendar below 
   div#week
     div.day Sunday
+      button(onclick="displayPopup(0)").addWorkout +
       ul#list0
     div.day Monday
+      button(onclick="displayPopup(1)").addWorkout +
       ul#list1
     div.day Tuesday
+      button(onclick="displayPopup(2)").addWorkout +
       ul#list2
     div.day Wednesday
+      button(onclick="displayPopup(3)").addWorkout +
       ul#list3
     div.day Thursday
+      button(onclick="displayPopup(4)").addWorkout +
       ul#list4
     div.day Friday
+      button(onclick="displayPopup(5)").addWorkout +
       ul#list5
     div.day Saturday
+      button(onclick="displayPopup(6)").addWorkout +
       ul#list6
