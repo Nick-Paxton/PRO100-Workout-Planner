@@ -1,0 +1,46 @@
+.mainlist {
+    background-color: grey;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.maincontent {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: white;
+}
+
+.mainlist-item {
+    display: inline;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    margin: 5px;
+}
+
+.mainlist-item * {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+.workout-title {
+    background-color: #625f5f;
+    border-bottom-color: black;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+}
+
+.workout-list h3 {
+    background-color: #625f5f;
+    display: inline;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
+.workout-list p {
+    display: inline-block;
+}
