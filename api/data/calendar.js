@@ -151,7 +151,6 @@ const addWeeklyWorkout = (o, workout, year, month, weekday) => {
                 o[year][month][week][day]['workouts'].push(workout)
                 console.log("workout added")
             }
-            //d9.setDate(d9.getDate() + 86400000)
         }
     }
 }
@@ -160,19 +159,28 @@ const returnCalendarWeek = (o) => {
     
 }
 
-// to import use const calendar = require('./data/calendar.js')
-// returns an calendar object for the current month
-// if run multiple times, objects will not be overwritten because keys are only added if they don't already exist
-// use to create a new key for the current month for a given user if it doesn't already exist or to create a new calendar for a user that doesn't have one
-// not sure if this helps much but I can explain the usage in more detail if need be
+//for these methods o refers to a user's calendar object and everything else should hopefully be self explanatory
+
+// returns a calendar object for the current month given a user id
+// run only when creating a user because the object returned is an empty calendar for a given month with a userID key and isn't useful when trying to update
 exports.createCalendar = createCalendar
 
+// returns a user's calendar object updated with keys for current month, safe to run multiple times because it only works if keys for current month don't exist
 exports.updateCalendar = updateCalendar
 
+// returns a specific day object from a user's calendar object without needing to know the calendar week
+// don't put in values for a day that doesn't exist yet in a user's calendar because I haven't written checks yet so if you do that it's on you
+// same applies to addWorkoutWithoutCalendarWeek()
 exports.getDayWithoutCalendarWeek = getDayWithoutCalendarWeek
 
+// adds a workout into a specific day's workout object
+// kinda redundant now that I think about it because you can just use something like getDayWithoutCalendarWeek()['workouts'].push() instead but it's here if you want a different flavor
 exports.addWorkoutWithoutCalendarWeek = addWorkoutWithoutCalendarWeek
 
+// adds a given workout object to every day of a month
+// don't put in a month/year that isn't in the user's calendar because no checks, same goes for addWeeklyWorkout()
 exports.addDailyWorkout = addDailyWorkout
 
+// adds a given workout object to every specified weekday in a month
+// for our convenience weekdays go from 1-7 so keep that in mind when using this (1 is subtracted from weekday because date objects use 0-6)
 exports.addWeeklyWorkout = addWeeklyWorkout
