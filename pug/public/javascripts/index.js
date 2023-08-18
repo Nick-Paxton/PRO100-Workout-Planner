@@ -1,10 +1,9 @@
-let dayButtonPressed = 0;
-
 fetch("http://localhost:2718/workout/1234")
     .then((response) => {
         if (response.ok) {
             response.json().then((data) => {
                 var currentDate = new Date()
+                currentDate.setDate(8)
                 var firstOfMonth = new Date()
                 var firstOfWeek = new Date()
 
@@ -43,57 +42,8 @@ fetch("http://localhost:2718/workout/1234")
         }
     })
 
-    
-const addButton = document.getElementById('addButton')
-addButton.addEventListener('click', addWorkout)
-
-function addWorkout() {
-    let dayList
-    let workoutName = document.getElementById('workoutName')
-    let workoutDes = document.getElementById('workoutDes')
-    let reps = document.getElementById('reps')
-    let sets = document.getElementById('sets')
-    switch (dayButtonPressed) {
-        case 0: {
-            dayList = document.getElementById('list0')
-            break
-        }
-        case 1: {
-            dayList = document.getElementById('list1')
-            break
-        }
-        case 2: {
-            dayList = document.getElementById('list2')
-            break
-        }
-        case 3: {
-            dayList = document.getElementById('list3')
-            break
-        }
-        case 4: {
-            dayList = document.getElementById('list4')
-            break
-        }
-        case 5: {
-            dayList = document.getElementById('list5')
-            break
-        }
-        case 6: {
-            dayList = document.getElementById('list6')
-            break
-        }
-    }
-
-    let li = document.createElement("li")
-    li.appendChild(document.createTextNode("workout"))
-    dayList.appendChild(li)
-    closePopup()
-    
-}
-
-function displayPopup(day) {
-    dayButtonPressed = day
-    console.log(dayButtonPressed)
+// old way of handling the data
+function displayPopup() {
     document.getElementById('myForm').style.display = "block"
 }
 
@@ -101,7 +51,6 @@ function closePopup() {
     document.getElementById('myForm').style.display = "none"
 }
 
-// old way of handling the data
 // const today = new Date()
 // const month = today.getMonth() + 1
 
