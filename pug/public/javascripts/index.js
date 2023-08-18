@@ -5,6 +5,7 @@ fetch("http://localhost:2718/workout/1234")
         if (response.ok) {
             response.json().then((data) => {
                 var currentDate = new Date()
+                currentDate.setDate(7)
                 var firstOfMonth = new Date()
                 var firstOfWeek = new Date()
 
