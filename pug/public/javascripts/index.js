@@ -1,5 +1,3 @@
-let dayButtonPressed = 0;
-
 fetch("http://localhost:2718/workout/1234")
     .then((response) => {
         if (response.ok) {
@@ -110,7 +108,6 @@ function closePopup() {
     document.getElementById('myForm').style.display = "none"
 }
 
-// old way of handling the data
 // const today = new Date()
 // const month = today.getMonth() + 1
 
