@@ -54,6 +54,13 @@ function addWorkout() {
     let workoutDes = document.getElementById('workoutDes')
     let reps = document.getElementById('reps')
     let sets = document.getElementById('sets')
+
+    let workout = {
+        name: workoutName.textContent,
+        desc: workoutDes.textContent,
+        reps: reps.textContent,
+        sets: sets.textContent
+    }
     switch (dayButtonPressed) {
         case 0: {
             dayList = document.getElementById('list0')
@@ -86,7 +93,8 @@ function addWorkout() {
     }
 
     let li = document.createElement("li")
-    li.appendChild(document.createTextNode("workout"))
+    const workoutStr = workout.name + "\nReps"
+    li.appendChild(document.createTextNode(workout))
     dayList.appendChild(li)
     closePopup()
     
