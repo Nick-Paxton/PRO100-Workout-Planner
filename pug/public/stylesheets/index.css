@@ -10,11 +10,20 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    margin-top: 2.5%;
   }
 
   .day {
-    padding: 4%;
+    padding: 2%;
     border-style: solid;
+  }
+  
+  .day ul li {
+    display: block;
+    width: 164px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   /* CSS for addWorkout Popup */
@@ -58,6 +67,20 @@
     border: none;
     cursor: pointer;
     width: 100%;
+    margin-bottom:10px;
+    opacity: 1;
+  }
+
+  .save-workouts {
+    margin: auto;
+    margin: 2.5%;
+    text-align: center;
+    background-color: #302f49;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
     margin-bottom:10px;
     opacity: 1;
   }

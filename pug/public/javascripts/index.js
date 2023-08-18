@@ -1,4 +1,7 @@
 let dayButtonPressed = 0;
+let workoutsToBeSaved = [
+
+]
 
 fetch("http://localhost:2718/workout/1234")
     .then((response) => {
@@ -56,10 +59,10 @@ function addWorkout() {
     let sets = document.getElementById('sets')
 
     let workout = {
-        name: workoutName.textContent,
-        desc: workoutDes.textContent,
-        reps: reps.textContent,
-        sets: sets.textContent
+        name: workoutName.value,
+        desc: workoutDes.value,
+        reps: reps.value,
+        sets: sets.value
     }
     switch (dayButtonPressed) {
         case 0: {
@@ -93,10 +96,22 @@ function addWorkout() {
     }
 
     let li = document.createElement("li")
-    const workoutStr = workout.name + "\nReps"
-    li.appendChild(document.createTextNode(workout))
+    let workoutStr = `Name: ${workout.name}\n` + `Description: ${workout.desc}\n` + `Reps: ${workout.reps}\n` + `Sets: ${workout.sets}`
+    li.title = workoutStr
+    li.appendChild(document.createTextNode(workoutStr))
     dayList.appendChild(li)
+    workoutName.value = null
+    workoutDes.value = null
+    reps.value = null
+    sets.value = null
     closePopup()
+    workoutsToBeSaved.push(workout)
+}
+
+const saveButton = document.getElementById('save-workouts')
+saveButton.addEventListener('click', saveWorkouts)
+
+function saveWorkouts() {
     
 }
 
