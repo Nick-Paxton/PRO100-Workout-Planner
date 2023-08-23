@@ -159,6 +159,10 @@ const returnCalendarWeek = (o) => {
     
 }
 
+const addInBasicUserCalandars = () => { // This method is only to add in hardcoded Users. Either for testing or to be used for the community page
+    
+}
+
 //for these methods o refers to a user's calendar object and everything else should hopefully be self explanatory
 
 // returns a calendar object for the current month given a user id
