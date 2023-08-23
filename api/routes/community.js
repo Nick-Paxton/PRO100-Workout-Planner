@@ -15,6 +15,16 @@ const get = (req, res) => {
     }
 }
 
+const getAllWorkouts = (req, res) => {
+    try {
+        dal.getAll(db,collection, req.body, (jsonData) => {
+            res.json(jsonData)
+        })
+    } catch (err) {
+        res.sendStatus(500)
+    }
+}
+
 const patch = (req, res) => {
     try {
         dal.update(db, collection, req.body, () => {
@@ -54,5 +64,6 @@ router.get('/', get)
 router.patch('/', patch)
 router.post('/', post)
 router.delete('/', deleteWorkout)
+router.get('/all', getAllWorkouts)
 
 module.exports = router

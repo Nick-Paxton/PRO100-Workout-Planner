@@ -34,6 +34,22 @@ const getDocument = async (db, collection, body, callback) => {
     })
 }
 
+
+const getAllDocuments = async (db, collection, body, callback) => {
+
+    executeQuery(async (client) => {
+        const database = client.db(db)
+        const collect = database.collection(collection)
+        let data = await collect.find()
+        let array = []
+        for await (const doc of data) {
+            array.push(doc)
+        }
+        callback(array)
+    })
+}
+
+
 /**
  * Simple method to update a document in the database
  * @param {String} db String of the name of the database to access
@@ -99,6 +115,7 @@ const deleteDocument = async (db, collection, body, callback) => {
 
 module.exports = {
     get: getDocument,
+    getAll: getAllDocuments,
     Update: updateDocument,
     Post: postDocument,
     Delete: deleteDocument
