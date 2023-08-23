@@ -1,7 +1,29 @@
-let dayButtonPressed = 0;
-let workoutsToBeSaved = [
+const calendar = require("../../../api/data/calendar.js")
 
-]
+let dayButtonPressed = 0;
+let workoutsToBeSaved = {
+    1 : [
+
+    ],
+    2 : [
+
+    ],
+    3 : [
+
+    ],
+    4 : [
+
+    ],
+    5 : [
+
+    ],
+    6 : [
+
+    ],
+    7 : [
+
+    ]
+}
 
 fetch("http://localhost:2718/workout/1234")
     .then((response) => {
@@ -46,6 +68,54 @@ fetch("http://localhost:2718/workout/1234")
             })
         }
     })
+
+const saveButton = document.getElementById('save-workouts')
+saveButton.addEventListener('click', saveWorkouts)
+    
+async function saveWorkouts() {
+    let myWorkoutData
+    var currentDate = new Date()
+    currentDate.setDate(7)
+    var firstOfMonth = new Date()
+    var firstOfWeek = new Date()
+
+    firstOfWeek.setDate(currentDate.getDate()-currentDate.getDay())
+    firstOfMonth.setDate(1)
+    var daysLeft = 31 - (7 - firstOfMonth.getDay())
+    var weekCheck = 31 - firstOfWeek.getDate() + 1
+    
+    const year = firstOfWeek.getFullYear()
+    const month = firstOfWeek.getMonth() + 1
+    var currentWeek
+    if (weekCheck < daysLeft) currentWeek = 1
+    //                         (( 6            - (7 - 2) - 1 ) / 7 = 2
+    //                         (( 13           - (7 - 2) - 1 ) / 7) = 3
+    else currentWeek = (((firstOfWeek.getDate() - (7 - firstOfMonth.getDay()))-1)/7) + 2
+        
+
+    fetch("http://localhost:2718/workout/1234").then((response) => {
+        if(response.ok) {
+            response.json().then((data) => {
+                myWorkoutData = data
+            })
+        }
+        myWorkoutData = calendar.createCalendar(1)
+        myWorkoutData = calendar.updateCalendar(myWorkoutData)
+    })
+    
+    for (i = 0; i < workoutsToBeSaved[1].length; i++) {
+        calendar.addWorkoutWithoutCalendarWeek(myWorkoutData, )
+    }
+    
+    const response = await fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        body: {
+            userID: 1234,
+            2023: 8:
+        } // body data type must match "Content-Type" header
+        });
+        return response.json(); // parses JSON response into native JavaScript objects
+}
 
     
 const addButton = document.getElementById('addButton')
@@ -105,14 +175,7 @@ function addWorkout() {
     reps.value = null
     sets.value = null
     closePopup()
-    workoutsToBeSaved.push(workout)
-}
-
-const saveButton = document.getElementById('save-workouts')
-saveButton.addEventListener('click', saveWorkouts)
-
-function saveWorkouts() {
-    
+    workoutsToBeSaved.dayButtonPressed.push(workout)
 }
 
 function displayPopup(day) {
