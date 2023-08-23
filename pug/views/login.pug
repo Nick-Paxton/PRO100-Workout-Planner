@@ -2,6 +2,7 @@ extends layout
 
 block links
     link(rel="stylesheet" href="./stylesheets/login.css")
+    script(src="./javascripts/login.js" defer)
     
 block maincontent 
     .intro
@@ -17,5 +18,5 @@ block maincontent
         form#login-form
             input(type="text" name="username" id="username-field" class="login-form-field" placeholder="Username")  
             input(type="password" name="password" id="password-field" class="login-form-field" placeholder="Password")  
-            input(onclick="submitClick(); return false" type="submit" value="Login" id="login-form-submit")
+            input(type="button" value="Login" id="login-form-submit")
 

@@ -99,3 +99,7 @@
     resize: none;
     height: 125px;
   }
+
+  .list {
+    padding-left: 0;
+  }

@@ -46,7 +46,7 @@ const patch = (req, res) => {
 
 const post = (req, res) => {
     try {
-        body = {
+        let body = {
             userID: req.body['userID'],
             '2023': req.body['2023']
         }
