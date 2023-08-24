@@ -1,71 +1,58 @@
 let dayButtonPressed = 0;
-var workoutsToBeSaved = {
-    0 : [
+var workoutsToBeSaved = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+]
+var myWorkoutData = null
 
-    ],
-    1 : [
+// fetch("http://localhost:2718/workout/1234")
+//     .then((response) => {
+//         if (response.ok) {
+//             response.json().then((data) => {
+//                 var currentDate = new Date()
+//                 currentDate.setDate(7)
+//                 var firstOfMonth = new Date()
+//                 var firstOfWeek = new Date()
 
-    ],
-    2 : [
-
-    ],
-    3 : [
-
-    ],
-    4 : [
-
-    ],
-    5 : [
-
-    ],
-    6 : [
-
-    ]
-}
-
-fetch("http://localhost:2718/workout/1234")
-    .then((response) => {
-        if (response.ok) {
-            response.json().then((data) => {
-                var currentDate = new Date()
-                currentDate.setDate(7)
-                var firstOfMonth = new Date()
-                var firstOfWeek = new Date()
-
-                firstOfWeek.setDate(currentDate.getDate()-currentDate.getDay())
-                firstOfMonth.setDate(1)
-                var daysLeft = 31 - (7 - firstOfMonth.getDay())
-                var weekCheck = 31 - firstOfWeek.getDate() + 1
+//                 firstOfWeek.setDate(currentDate.getDate()-currentDate.getDay())
+//                 firstOfMonth.setDate(1)
+//                 var daysLeft = 31 - (7 - firstOfMonth.getDay())
+//                 var weekCheck = 31 - firstOfWeek.getDate() + 1
                 
-                const year = firstOfWeek.getFullYear()
-                const month = firstOfWeek.getMonth() + 1
-                var currentWeek
-                if (weekCheck < daysLeft) currentWeek = 1
-                //                         (( 6            - (7 - 2) - 1 ) / 7 = 2
-                //                         (( 13           - (7 - 2) - 1 ) / 7) = 3
-                else currentWeek = (((firstOfWeek.getDate() - (7 - firstOfMonth.getDay()))-1)/7) + 2
+//                 const year = firstOfWeek.getFullYear()
+//                 const month = firstOfWeek.getMonth() + 1
+//                 var currentWeek
+//                 if (weekCheck < daysLeft) currentWeek = 1
+//                 //                         (( 6            - (7 - 2) - 1 ) / 7 = 2
+//                 //                         (( 13           - (7 - 2) - 1 ) / 7) = 3
+//                 else currentWeek = (((firstOfWeek.getDate() - (7 - firstOfMonth.getDay()))-1)/7) + 2
 
 
-                for (var i = 0; i < 7; i++) {
-                    var day = firstOfWeek.getDate() + i
-                    var dayOfWeek = firstOfWeek.getDay() + i
+//                 for (var i = 0; i < 7; i++) {
+//                     var day = firstOfWeek.getDate() + i
+//                     var dayOfWeek = firstOfWeek.getDay() + i
 
-                    var ul = document.querySelector("#list"+dayOfWeek)
+//                     var ul = document.querySelector("#list"+dayOfWeek)
 
-                    data[year+""][month+""][currentWeek+""][day+""]["workouts"].forEach(element => { // ***** need to figure out how to handle empty objects *****
-                        var exercise = element['name'] + ': Reps: ';
-                        exercise = exercise + element['reps'] + ': Sets: ';
-                        exercise = exercise + element['sets']
-                        // place the data on the UI
+//                     data[year+""][month+""][currentWeek+""][day+""]["workouts"].forEach(element => { // ***** need to figure out how to handle empty objects *****
+//                         var exercise = element['name'] + ': Reps: ';
+//                         exercise = exercise + element['reps'] + ': Sets: ';
+//                         exercise = exercise + element['sets']
+//                         // place the data on the UI
 
-                        var li = document.createElement('li')
-                        li.innerHTML = exercise
-                        ul.appendChild(li)
-                    });
-                }
-            })
-        }
-    })
+//                         var li = document.createElement('li')
+//                         li.innerHTML = exercise
+//                         ul.appendChild(li)
+//                     });
+//                 }
+//             })
+//         }
+//     })
 
 const shareButton = document.getElementById('share-workouts')
 shareButton.addEventListener('click', shareWorkouts)
@@ -81,46 +68,51 @@ async function saveWorkouts() {
     let myWorkoutData
         
 
-    fetch("http://localhost:2718/workout/1000").then((response) => {
+    await fetch("http://localhost:2718/workout/100").then(async (response) => {
         if(response.ok) {
-            response.json().then((data) => {
+            await response.json().then((data) => {
                 myWorkoutData = data
             })
         }
         else {
-        myWorkoutData = {
-            userID: 1000,
-            2023: {
-                8: {
-                    4: {
-                        23: {
-                            "workouts": [
-
-                            ]
-                        }
+            myWorkoutData = {
+                userID: 100,
+                2023: {
+                    8: {
+                        20 : {"workouts": []},
+                        21 : {"workouts": []},
+                        22 : {"workouts": []},
+                        23 : {"workouts": []},
+                        24 : {"workouts": []},
+                        25 : {"workouts": []},
+                        26 : {"workouts": []}
                     }
                 }
             }
-    }
-    }
+        }
     })
-
-        //addWorkoutWithoutCalendarWeek = (o, workout, year, month, day)
-    console.log(workoutsToBeSaved[1].length)
+    var firstOfWeek = new Date()
+    firstOfWeek.setDate(firstOfWeek.getDate()-firstOfWeek.getDay())
     
-    for (i = 0; i < Object.keys(workoutsToBeSaved).length; i++) {
+    for (i = 0; i < 7; i++) {
         for (j = 0; j < workoutsToBeSaved[i].length; j++) {
-            addWorkoutWithoutCalendarWeek(myWorkoutData, workoutsToBeSaved[i + 1][j], 2023, 8, 23)
-            console.log("Saved Workout")
+            myWorkoutData["2023"]["8"][firstOfWeek.getDate()+i+""].workouts.push(workoutsToBeSaved[i][j])
         }
     }
     
-    const response = await fetch("http://localhost:2718/workout/", {
+    await fetch("http://localhost:2718/workout/", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
         body: JSON.stringify(myWorkoutData) // body data type must match "Content-Type" header
-        });
-        console.log(JSON.stringify(myWorkoutData))
-        return response.json(); // parses JSON response into native JavaScript objects
+        }).then((response) => {
+            if (response.ok) {
+                console.log("OK")
+            }
+            console.log(myWorkoutData)
+    })
+        
 }
 
     
@@ -181,12 +173,11 @@ function addWorkout() {
     reps.value = null
     sets.value = null
     closePopup()
-    workoutsToBeSaved.dayButtonPressed.push(workout)
+    workoutsToBeSaved[dayButtonPressed].push(workout)
 }
 
 function displayPopup(day) {
     dayButtonPressed = day
-    console.log(dayButtonPressed)
     document.getElementById('myForm').style.display = "block"
 }
 
