@@ -1,14 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const dal = require('../data/workoutdata.js')
+const dal = require('../data/communitydata.js')
 
 const db = 'workout_planner'
-const collection = 'default_workouts'
-
+const collection = 'community_workouts'
 
 const get = (req, res) => {
     try {
-        dal.Get(db, collection, req.body, (jsonData) => {
+        dal.get(db,collection, req.body, (jsonData) => {
             res.json(jsonData)
         })
     } catch (err) {
@@ -16,42 +15,34 @@ const get = (req, res) => {
     }
 }
 
-
-const getByUserID = (req, res) => {
-    const userID = req.params.userID
+const getAllWorkouts = (req, res) => {
     try {
-        dal.getByUserID(db,collection,userID, (jsonData) => {
-            if (jsonData) {
-                res.json(jsonData)
-            } else {
-                res.sendStatus(404)
-            }
+        dal.getAll(db,collection, req.body, (jsonData) => {
+            res.json(jsonData)
         })
     } catch (err) {
         res.sendStatus(500)
     }
 }
-
 
 const patch = (req, res) => {
     try {
-        dal.Update(db, collection, req.body, () => {
+        dal.update(db, collection, req.body, () => {
             res.sendStatus(200)
         })
     } catch (err) {
         res.sendStatus(500)
     }
 }
-
 
 const post = (req, res) => {
     try {
-        console.log(req.body)
         let body = {
             userID: req.body['userID'],
-            '2023': req.body['2023']
+            title: req.body['title'],
+            workouts: req.body['workouts']
         }
-        dal.Post(db, collection, body, () => {
+        dal.post(db, collection, body, () => {
             res.sendStatus(200)
         })
     } catch (err) {
@@ -59,10 +50,9 @@ const post = (req, res) => {
     }
 }
 
-
 const deleteWorkout = (req, res) => {
     try {
-        dal.Delete(db, collection, req.body, () => {
+        dal.delete(db, collection, req.body, () => {
             res.sendStatus(200)
         })
     } catch (err) {
@@ -74,6 +64,6 @@ router.get('/', get)
 router.patch('/', patch)
 router.post('/', post)
 router.delete('/', deleteWorkout)
-router.get('/:userID', getByUserID)
+router.get('/all', getAllWorkouts)
 
 module.exports = router
