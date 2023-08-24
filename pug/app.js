@@ -1,12 +1,15 @@
 var createError = require('http-errors');
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var registerRouter = require('./routes/register')
 var loginRouter = require('./routes/login')
+var logoutRouter = require('./routes/logout')
 var communityRouter = require('./routes/community')
 
 var app = express();
@@ -16,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'secretsession', cookie: { loggedIn: undefined } }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +27,9 @@ app.set('view engine', 'pug');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/register', registerRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/community', communityRouter);
 
 // catch 404 and forward to error handler

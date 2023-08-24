@@ -6,8 +6,8 @@ block links
     
 block maincontent 
     .intro
-        h1 Login 
-        p Login to save your workouts to your account
+        h1 Register 
+        p Register to save your workouts to your account
     
     #login-prompt 
 
@@ -15,8 +15,8 @@ block maincontent
             p#login-error-msg Invalid username
                 span#error-msg-second-line and/or password
         
-        form(id="login-form" method="post" action="http://localhost:3000/login/")
+        form(id="login-form" method="post" action="http://localhost:3000/register/")
             input(type="text" name="username" id="username-field" class="login-form-field" placeholder="Username")  
             input(type="test" name="password" id="password-field" class="login-form-field" placeholder="Password")  
-            input(type="submit" value="Login" id="login-form-submit")
+            input(type="submit" value="Register" id="login-form-submit")
 

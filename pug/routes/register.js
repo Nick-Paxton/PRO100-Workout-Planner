@@ -2,15 +2,14 @@ var express = require('express')
 var router = express.Router()
 
 router.get('/', function(req, res, next) {
-    res.render('login', {title: 'Login'})
+    res.render('register', {title: 'Register'})
 })
 
 router.post('/', async function(req, res, next) {
     let data = req.body
     req.session.loggedIn = data['username']
-    console.log("logged in: " + req.session.loggedIn)
+    console.log("registered: " + req.session.loggedIn)
     console.log("redirecting")
-    console.log(data)
     res.redirect('/')
 })
 
