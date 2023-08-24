@@ -1,0 +1,14 @@
+extends layout 
+
+
+block links 
+    link(rel='stylesheet', href='./stylesheets/style.css')
+
+
+
+block maincontent
+    div.intro
+        h1 Welcome to the scheduler
+        p.month-year #{new Date(Date.now()).getMonth() + 1}, #{new Date(Date.now()).getFullYear()}
+
+        
