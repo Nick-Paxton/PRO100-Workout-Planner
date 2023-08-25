@@ -14,11 +14,13 @@ html
       a(href="./" class="logo") Workout Planner
       nav.nav-items 
         a(href="./") Planner 
-        a(href="./register") Register
-        a(href="./login") Login 
-        a(href="./logout") Log Out
         a(href="./community") Community
         a(href="./scheduler") Scheduler
+        if !loggedIn
+          a(href="./register") Register
+          a(href="./login") Login
+        else
+          a(href="./logout") Log Out
 
     main 
       block maincontent 
@@ -29,8 +31,10 @@ html
       div.links
         span More Info
         a(href="./") Planner
-        a(href="./register") Register
-        a(href="./login") Login
-        a(href="./logout") Log Out
         a(href="./community") Community
         a(href="./scheduler") Scheduler
+        if !loggedIn
+          a(href="./register") Register
+          a(href="./login") Login
+        else
+          a(href="./logout") Log Out
