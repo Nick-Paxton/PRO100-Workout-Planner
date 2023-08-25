@@ -5,6 +5,10 @@
     box-sizing: border-box;
   }
 
+  .addWorkout {
+    
+  }
+
   #week {
     width: 100%;
     text-align: center;
@@ -13,7 +17,29 @@
     margin-top: 2.5%;
   }
 
+  #share-buttons {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #share-buttons :hover {
+    background-color: #9f9f9f;
+  }
+
+  #addTitle {
+    width: 25%;
+  }
+
+  .share-workout {
+    width: 17%;
+    padding: 2%;
+    border-style: solid;
+  }
+
   .day {
+    width: 17%;
     padding: 2%;
     border-style: solid;
   }
