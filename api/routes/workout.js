@@ -46,14 +46,17 @@ const patch = (req, res) => {
 
 const post = (req, res) => {
     try {
-        console.log(req.body)
+        let jsonBody = req.body
         let body = {
-            userID: req.body['userID'],
-            '2023': req.body['2023']
+            userID: jsonBody['userID'],
+            '2023': jsonBody['2023']
         }
-        dal.Post(db, collection, body, () => {
-            res.sendStatus(200)
+        dal.Delete(db,collection, {userID:jsonBody['userID']}, () => {
+                dal.Post(db, collection, body, () => {
+                res.sendStatus(200)
+            })
         })
+        
     } catch (err) {
         res.sendStatus(500)
     }

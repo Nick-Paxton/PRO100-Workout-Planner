@@ -106,7 +106,7 @@ const deleteDocument = async (db, collection, body, callback) => {
         const database = client.db(db)
         const collect = database.collection(collection)
 
-        const query = {id: body['id']}
+        const query = {userID: body['userID']}
         await collect.deleteOne(query)
 
         callback()
