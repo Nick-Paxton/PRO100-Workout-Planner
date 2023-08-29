@@ -37,10 +37,11 @@ const patch = (req, res) => {
 
 const post = (req, res) => {
     try {
+        let jsonBody = req.body
         let body = {
-            userID: req.body['userID'],
-            title: req.body['title'],
-            workouts: req.body['workouts']
+            userID: jsonBody['userID'],
+            title: jsonBody['title'],
+            workouts: jsonBody['workouts']
         }
         dal.post(db, collection, body, () => {
             res.sendStatus(200)

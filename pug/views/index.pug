@@ -23,6 +23,13 @@ block maincontent
       input#sets(type='number' placeholder='Sets Count' name='sets' required='')
       button#addButton.btn(type='button') Add Workout
       button.btn.cancel(type='button' onclick='closePopup()') Close
+  div#addTitle.form-popup
+    form.form-container
+      h1 Please Add a title to your workout 
+      label(for="title")
+      input#title(type="text" placeholder='Title' name='title' required='')
+      button.btn#share-button(type='button') Share Workout 
+      button.btn.cancel(type='button' onclick='closeTitlePop()') Close
   div.intro 
     h1 Welcome to our Workout Planner 
     p Add workouts to the weekly calendar below 
@@ -48,5 +55,13 @@ block maincontent
     div.day Saturday
       button(onclick="displayPopup(6)").addWorkout +
       ul#list6.list
+  div#share-buttons
+    button(onclick="displayTitlePop(0)").share-workout Share Sunday Workout  
+    button(onclick="displayTitlePop(1)").share-workout Share Monday Workout
+    button(onclick="displayTitlePop(2)").share-workout Share Tuesday Workout  
+    button(onclick="displayTitlePop(3)").share-workout Share Wednesday Workout  
+    button(onclick="displayTitlePop(4)").share-workout Share Thursday Workout  
+    button(onclick="displayTitlePop(5)").share-workout Share Friday Workout  
+    button(onclick="displayTitlePop(6)").share-workout Share Saturday Workout  
   button.save-workouts#save-workouts Save Workouts
   button.save-workouts#share-workouts Share Your Workout

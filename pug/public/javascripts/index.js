@@ -54,11 +54,84 @@ var myWorkoutData = null
 //         }
 //     })
 
-const shareButton = document.getElementById('share-workouts')
+const shareButton = document.getElementById('share-button')
 shareButton.addEventListener('click', shareWorkouts)
 
 async function shareWorkouts() {
+    let dayList
+    switch (dayButtonPressed) {
+        case 0: {
+            dayList = document.getElementById('list0')
+            break
+        }
+        case 1: {
+            dayList = document.getElementById('list1')
+            break
+        }
+        case 2: {
+            dayList = document.getElementById('list2')
+            break
+        }
+        case 3: {
+            dayList = document.getElementById('list3')
+            break
+        }
+        case 4: {
+            dayList = document.getElementById('list4')
+            break
+        }
+        case 5: {
+            dayList = document.getElementById('list5')
+            break
+        }
+        case 6: {
+            dayList = document.getElementById('list6')
+            break
+        }
+    }
 
+    let liElements = dayList.getElementsByTagName("li")
+    let title = document.getElementById('title')
+    console.log(title.textContent)
+
+    if (title.textContent === "") {
+        title.place = "PLEASE ENTER A TITLE"
+        return
+    }
+
+    let communityPost = {
+        userID: 1000,
+        title: title.value,
+        workouts: [
+            
+        ]
+    }
+
+    for (i = 0; i < liElements.length; i++) {
+        liText = liElements[i].textContent
+        liSplit = liText.split(" ")
+        workout = {
+            name: liSplit[1],
+            reps: liSplit[5],
+            sets: liSplit[7]
+        }
+        communityPost["workouts"].push(workout)
+    }
+
+    await fetch("http://localhost:2718/community/", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(communityPost) // body data type must match "Content-Type" header
+        }).then((response) => {
+            if (response.ok) {
+                console.log("OK")
+            }
+            console.log(myWorkoutData)
+    })
+
+    closeTitlePop()
 }
 
 const saveButton = document.getElementById('save-workouts')
@@ -164,7 +237,7 @@ function addWorkout() {
     }
 
     let li = document.createElement("li")
-    let workoutStr = `Name: ${workout.name}\n` + `Description: ${workout.desc}\n` + `Reps: ${workout.reps}\n` + `Sets: ${workout.sets}`
+    let workoutStr = `Name: ${workout.name} \n` + `Description: ${workout.desc} \n` + `Reps: ${workout.reps} \n` + `Sets: ${workout.sets}`
     li.title = workoutStr
     li.appendChild(document.createTextNode(workoutStr))
     dayList.appendChild(li)
@@ -174,6 +247,15 @@ function addWorkout() {
     sets.value = null
     closePopup()
     workoutsToBeSaved[dayButtonPressed].push(workout)
+}
+
+function closeTitlePop() {
+    document.getElementById('addTitle').style.display = "none"
+}
+
+function displayTitlePop(day) {
+    dayButtonPressed = day
+    document.getElementById('addTitle').style.display = "block"
 }
 
 function displayPopup(day) {

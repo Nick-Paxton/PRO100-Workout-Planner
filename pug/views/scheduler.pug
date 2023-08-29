@@ -3,6 +3,7 @@ extends layout
 
 block links 
     link(rel='stylesheet', href='./stylesheets/style.css')
+    link(rel='stylesheet', href='./stylesheets/scheduler.css')
 
 
 
@@ -11,4 +12,23 @@ block maincontent
         h1 Welcome to the scheduler
         p.month-year #{new Date(Date.now()).getMonth() + 1}, #{new Date(Date.now()).getFullYear()}
 
-        
+    #container
+        #headings
+            ul
+                - var daysName = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+                each val in daysName
+                    li= val
+        section
+            - var timestamp = Date.now();
+            - var today = new Date(timestamp);
+            - var dayNum = today.getDate() - 1;
+            - var year = today.getFullYear();
+            - var monthStart = new Date(year, today.getMonth(), 0);
+            - var monthEnd = new Date(year, today.getMonth() + 1, 0);
+            - var monthLength = ((monthEnd - monthStart) / 86400000) + 1;
+            - var index = 1;
+            while index < monthLength
+                if index == dayNum
+                    div(class="today")= index++
+                else
+                    div= index++
