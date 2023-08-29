@@ -130,7 +130,6 @@ async function shareWorkouts() {
             }
             console.log(myWorkoutData)
     })
-
     closeTitlePop()
 }
 

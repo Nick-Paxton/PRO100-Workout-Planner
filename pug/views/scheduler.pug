@@ -4,6 +4,7 @@ extends layout
 block links 
     link(rel='stylesheet', href='./stylesheets/style.css')
     link(rel='stylesheet', href='./stylesheets/scheduler.css')
+    script(src="./javascripts/scheduler.js" defer)
 
 
 
@@ -27,8 +28,14 @@ block maincontent
             - var monthEnd = new Date(year, today.getMonth() + 1, 0);
             - var monthLength = ((monthEnd - monthStart) / 86400000) + 1;
             - var index = 1;
+            div(class="dummy1")
+            div(class="dummy2")
             while index < monthLength
                 if index == dayNum
                     div(class="today")= index++
-                else
+                else 
                     div= index++
+                
+
+                
+                

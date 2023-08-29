@@ -7,7 +7,6 @@
 	left: 50%;
 	border-radius: 3px;
 	overflow: hidden;
-	transform: translateY(-50%) translateX(calc("50% - 450px"));
 	z-index: 2;
 	border: 1px solid #407b8a;
 }
@@ -50,7 +49,7 @@
 #container section div {
     display: inline-block;
     height: 12%;
-    width: calc("100% * 1/7");
+    width: calc(100% * 1/7);
     text-align: center;
     line-height: 76px;
     font-size: 18px;
@@ -62,8 +61,12 @@
     border-collapse: collapse;
 }
 
-#container section div &:first-child {
-    margin-left: calc("26.9% + 0.4088em");
+#container section div:hover{
+    background-color: rgba(161, 161, 161, 0.05);
+}
+
+#container section div &.first-child {
+    margin-left: calc(43.8% + 0.4088em);
 }
 
 #container section div &.today {
