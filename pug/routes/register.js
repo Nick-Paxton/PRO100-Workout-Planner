@@ -10,9 +10,26 @@ router.get('/', function(req, res, next) {
 router.post('/', async function(req, res, next) {
     let data = req.body
     req.session.loggedIn = data['username']
-    console.log("registered: " + req.session.loggedIn)
-    console.log("redirecting")
+    console.log("OK")
     res.redirect('/')
+
+    // await fetch("http://localhost:2718/user/", {
+    //     method: "POST",
+    //     headers: {
+    //         'Content-Type': 'application/json;charset=utf-8'
+    //     },
+    //     body: JSON.stringify({
+    //         username: data['username'],
+    //         password: data['password'],
+    //         userID: 17
+    //     })
+    //     }).then((response) => {
+    //         if (response.ok) {
+    //             req.session.loggedIn = data['username']
+    //             console.log("OK")
+    //             res.redirect('/')
+    //         }
+    // })
 })
 
 module.exports = router
