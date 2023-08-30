@@ -13,10 +13,10 @@ html
     header.header
       a(href="./" class="logo") Workout Planner
       nav.nav-items 
-        a(href="./") Planner 
         a(href="./community") Community
-        a(href="./scheduler") Scheduler
         if !loggedIn
+          a(href="./") Planner 
+          a(href="./scheduler") Scheduler
           a(href="./register") Register
           a(href="./login") Login
         else
@@ -30,10 +30,10 @@ html
     div.bottom-links 
       div.links
         span More Info
-        a(href="./") Planner
         a(href="./community") Community
-        a(href="./scheduler") Scheduler
         if !loggedIn
+          a(href="./") Planner 
+          a(href="./scheduler") Scheduler
           a(href="./register") Register
           a(href="./login") Login
         else
