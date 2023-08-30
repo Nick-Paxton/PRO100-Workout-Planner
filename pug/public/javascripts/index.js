@@ -130,6 +130,7 @@ async function shareWorkouts() {
             }
             console.log(myWorkoutData)
     })
+
     closeTitlePop()
 }
 
@@ -138,7 +139,6 @@ saveButton.addEventListener('click', saveWorkouts)
     
 async function saveWorkouts() {
     let myWorkoutData
-        
 
     await fetch("http://localhost:2718/workout/100").then(async (response) => {
         if(response.ok) {
@@ -164,6 +164,7 @@ async function saveWorkouts() {
         }
     })
     var firstOfWeek = new Date()
+    firstOfWeek.setDate(firstOfWeek.getDate()-7)
     firstOfWeek.setDate(firstOfWeek.getDate()-firstOfWeek.getDay())
     
     for (i = 0; i < 7; i++) {
