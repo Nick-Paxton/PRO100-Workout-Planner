@@ -1,3 +1,4 @@
+const { getDayWithoutCalendarWeek } = require("./calendar")
 
 
 async function getWorkoutsByMonthAsList() {
@@ -8,9 +9,13 @@ async function getWorkoutsByMonthAsList() {
         if(response.ok) {
             await response.json().then((data) => {
                 workoutData = data
-                workoutData
+                let index = 1;
+                while (index <= 31) {
+                    document.getElementById('content').textContent = getDayWithoutCalendarWeek(workoutData, new Date(Date.now()).getFullYear(), month, index)['workouts']
+                }
             })
         }
     })
 }
-getWorkoutsByMonthAsList()
+const calandarDayButton = document.getElementById('day')
+calandarDayButton.addEventListener('click', getWorkoutsByMonthAsList)
