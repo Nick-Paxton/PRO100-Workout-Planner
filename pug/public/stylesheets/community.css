@@ -16,7 +16,10 @@
     display: inline;
     border-style: solid;
     border-width: 5px;
-    border-color: black;
+    border-radius: 5%;
+    border-color: rgba(0, 0, 0, 0.37);
+    border-style:inset;
+    background: darkgray;
     margin: 5px;
 }
 
@@ -25,9 +28,11 @@
     color: white;
     text-align: center;
     padding: 5px;
+    border-radius: 5%;
 }
 
 .workout-title {
+    border-radius: 5%;
     background-color: #625f5f;
     border-bottom-color: black;
     border-bottom-width: 5px;
@@ -36,6 +41,7 @@
 
 .workout-list h3 {
     background-color: #625f5f;
+    border-radius: 10%;
     display: inline;
     border-style: solid;
     border-width: 3px;
