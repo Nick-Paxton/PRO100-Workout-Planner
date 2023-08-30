@@ -1,3 +1,29 @@
+//var c = require('./calendar')
+currentUser = -1
+
+var getUserID = async () => {
+    res = await fetch("http://localhost:3000/users")
+    r = await res.json()
+    currentUser = r['userID']
+    console.log('user gotten: ' + r['userID'])
+}
+var addWeeklyWorkout = (o, workout, year, month, weekday) => {
+    d9 = new Date()
+    console.log("day of the week: " + d9.getDay())
+    for (week in o[year][month]){
+        for (day in o[year][month][week]) {
+            d9.setDate(day)
+            console.log("day of the week: " + d9.getDay())
+            if (d9.getDay() == (weekday - 1)) {
+                o[year][month][week][day]['workouts'].push(workout)
+                console.log("workout added")
+            }
+        }
+    }
+    console.log(o)
+    return o
+}
+
 let dayButtonPressed = 0;
 var workoutsToBeSaved = [
     [],
@@ -92,15 +118,17 @@ async function shareWorkouts() {
 
     let liElements = dayList.getElementsByTagName("li")
     let title = document.getElementById('title')
-    console.log(title.textContent)
+    console.log(title.value)
 
-    if (title.textContent === "") {
+    if (title.value === "") {
         title.place = "PLEASE ENTER A TITLE"
         return
     }
 
+    await getUserID()
+
     let communityPost = {
-        userID: 1000,
+        userID: currentUser,
         title: title.value,
         workouts: [
             
@@ -108,7 +136,7 @@ async function shareWorkouts() {
     }
 
     for (i = 0; i < liElements.length; i++) {
-        liText = liElements[i].textContent
+        liText = liElements[i].innerHTML
         liSplit = liText.split(" ")
         workout = {
             name: liSplit[1],
@@ -117,6 +145,9 @@ async function shareWorkouts() {
         }
         communityPost["workouts"].push(workout)
     }
+
+    console.log(communityPost)
+
 
     await fetch("http://localhost:2718/community/", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -136,11 +167,13 @@ async function shareWorkouts() {
 
 const saveButton = document.getElementById('save-workouts')
 saveButton.addEventListener('click', saveWorkouts)
-    
+
 async function saveWorkouts() {
     let myWorkoutData
+    
+    await getUserID()
 
-    await fetch("http://localhost:2718/workout/100").then(async (response) => {
+    await fetch("http://localhost:2718/workout/" + currentUser).then(async (response) => {
         if(response.ok) {
             await response.json().then((data) => {
                 myWorkoutData = data
@@ -169,7 +202,9 @@ async function saveWorkouts() {
     
     for (i = 0; i < 7; i++) {
         for (j = 0; j < workoutsToBeSaved[i].length; j++) {
-            myWorkoutData["2023"]["8"][firstOfWeek.getDate()+i+""].workouts.push(workoutsToBeSaved[i][j])
+            // myWorkoutData["2023"]["8"][firstOfWeek.getDate()+i+""].workouts.push(workoutsToBeSaved[i][j])
+            h = addWeeklyWorkout(myWorkoutData, workoutsToBeSaved[i][j], firstOfWeek.getFullYear(), firstOfWeek.getMonth() + 1, i + 1)
+            myWorkoutData = h
         }
     }
     

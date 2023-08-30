@@ -52,7 +52,7 @@ const post = (req, res) => {
             '2023': jsonBody['2023']
         }
         dal.Delete(db,collection, {userID:jsonBody['userID']}, () => {
-                dal.Post(db, collection, body, () => {
+                dal.Post(db, collection, req.body, () => {
                 res.sendStatus(200)
             })
         })

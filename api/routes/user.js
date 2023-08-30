@@ -33,7 +33,7 @@ const post = (req, res) => {
             username: req.body['username'],
             password: req.body['password']
         }
-        dal.Post(db, collection, body, () => {
+        dal.post(db, collection, body, () => {
             res.sendStatus(200)
         })
     } catch (err) {
@@ -76,10 +76,21 @@ const getValidUserCheck = (req, res) => {
     }
 }
 
+const getDocumentCount = (req, res) => {
+    try {
+        dal.getCount(db, collection, req.body, (jsonData) => {
+            res.json({ count: jsonData })
+        })
+    } catch (err) {
+        res.sendStatus(500)
+    }
+}
+
 router.get('/', get)
 router.patch('/', patch)
 router.post('/', post)
 router.delete('/', deleteUser)
 router.get('/:username&:password', getValidUserCheck)
+router.get('/count', getDocumentCount)
 
 module.exports = router

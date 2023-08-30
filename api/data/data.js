@@ -49,6 +49,14 @@ const getAllDocuments = async (db, collection, body, callback) => {
     })
 }
 
+const getCount = async (db, collection, body, callback) => {
+    executeQuery(async (client) => {
+        const database = client.db(db)
+        const collect = database.collection(collection)
+        let data = await collect.countDocuments()
+        callback(data)
+    })
+}
 
 /**
  * Simple method to update a document in the database
@@ -118,5 +126,6 @@ module.exports = {
     getAll: getAllDocuments,
     Update: updateDocument,
     Post: postDocument,
-    Delete: deleteDocument
+    Delete: deleteDocument,
+    getCount: getCount
 }
