@@ -5,16 +5,13 @@
     box-sizing: border-box;
   }
 
-  .addWorkout {
-    
-  }
-
   #week {
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     margin-top: 2.5%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
   #share-buttons {
@@ -22,6 +19,7 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
   
   #share-buttons :hover {
@@ -35,13 +33,13 @@
   .share-workout {
     width: 17%;
     padding: 2%;
-    border-style: solid;
+    border-style:inset;
   }
 
   .day {
     width: 17%;
     padding: 2%;
-    border-style: solid;
+    border-style:inset;
   }
   
   .day ul li {
@@ -109,6 +107,10 @@
     width: 25%;
     margin-bottom:10px;
     opacity: 1;
+  }
+
+  #save-workouts :hover {
+    background-color: #14141f;
   }
 
   /* Add a red background color to the cancel button */
