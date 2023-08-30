@@ -64,7 +64,7 @@ getUserID((userID) => {
                     if (data[year+""][month+""][currentWeek+""][day+""]["workouts"]) {
 
                         data[year+""][month+""][currentWeek+""][day+""]["workouts"].forEach(element => { // ***** need to figure out how to handle empty objects *****
-                            var exercise = element['name'] + ': Reps: ';
+                            var exercise = "Name: " + element['name'] + ' Description: '+element['desc']+' Reps: ';
                             exercise = exercise + element['reps'] + ': Sets: ';
                             exercise = exercise + element['sets']
                             // place the data on the UI
